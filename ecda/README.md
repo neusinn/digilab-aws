@@ -34,7 +34,7 @@
 4. Docker installieren (Use snap für Ubuntu)
     ```
     sudo snap install docker
-   ```
+    ```
     
     optional: Test Docker    
     ```
