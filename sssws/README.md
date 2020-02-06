@@ -14,27 +14,49 @@
 - AWS-CLI Command Line Interface installiert und konfiguriert (Keys, Region)
 
 ## Einzelne Schritte 
-0. Öffne Terminal mit Projekt
-`$ cd ~/dev/digilab-aws/sssws/`
+
+Öffne ein Terminal und navigiere zum Projekt SSSWS: 
+    ```
+    cd ~/dev/digilab-aws/sssws/
+    ```
 
 1. Erstelle einen S3 Bucket 
-`$ aws s3 mb s3://www.sssws-1.diglab.admin.ch`
+    ```
+    aws s3 mb s3://www.sssws-1.diglab.admin.ch
+    ```
 
-2. Konfiguriere den S3 Bucket für Static Web Hosting. Enable Index- and Error-File.
-`$ aws s3 website s3://www.sssws-1.diglab.admin.ch/ --index-document index.html --error-document error.html`
+2.  Konfiguriere den S3 Bucket für Static Web Hosting und definiere Index.html and Error.html File.
+    ```
+    aws s3 website s3://www.sssws-1.diglab.admin.ch/ --index-document index.html --error-document error.html`
+    ```
 
-3. Upload html Files (durch Synchronisation). Konfiguriere Public Read Access für jedes File (oder definiere die policy)
-`$ aws s3 sync ./src/ s3://www.sssws-1.diglab.admin.ch/ --acl public-read`
+3.  Hochladen der HTML Files der Statischen Webseite mittels Synchronisation. Und konfiguriere Public Read Access für jedes File (oder definiere die policy)
+    ```
+    aws s3 sync ./src/ s3://www.sssws-1.diglab.admin.ch/ --acl public-read
+    ```
 
 **Done !**
 
 - Öffne die Web Site im Browser: <http://www.sssws-1.diglab.admin.ch.s3-website.eu-central-1.amazonaws.com/>
 
-oder benutze curl
-`$ curl curl https://s3.eu-central-1.amazonaws.com/www.sssws-1.diglab.admin.ch/index.html`
 
-- List den Inhalt des S3 Bucket
-`$ aws s3 ls www.sssws-1.diglab.admin.ch`
+## Clean up Script
+Remove the S3 Bucket and its content
+```
+./script_sssws-1_remove.sh
+```
+
+
+### Weitere Nützliche Kommandos
+- Teste Websetie in Curl
+    ```
+    curl https://s3.eu-central-1.amazonaws.com/www.sssws-1.diglab.admin.ch/index.html
+    ```
+
+- Liste Objekte im S3 Bucket auf
+    ```
+    aws s3 ls www.sssws-1.diglab.admin.ch`
+    ```
 
 
 

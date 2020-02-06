@@ -3,7 +3,7 @@
 echo "======================================================"
 echo "===                 D I G I L A B                  ==="
 echo "===                                                ==="
-echo "=== Create an S3 Bucket AWS and publish a Web Came ==="
+echo "=== Create an S3 Bucket AWS and publish a Web Game ==="
 echo "===               in just 5 seconds !              ==="
 echo "======================================================"
 
@@ -23,11 +23,12 @@ aws s3api put-bucket-policy --bucket www.wgsws-2.diglab.admin.ch --policy file:/
 echo "4. Upload Web Game code."
 aws s3 sync ./2048/ s3://www.wgsws-2.diglab.admin.ch/
 
-# do some work
+
 duration=$SECONDS
 echo
 echo "Done in $((duration)) seconds."
 echo
-echo "==> Open Linkt in Browser : http://www.wgsws-2.diglab.admin.ch.s3-website.eu-central-1.amazonaws.com/"
+echo "==> Open Link in Browser : http://www.wgsws-2.diglab.admin.ch.s3-website.eu-central-1.amazonaws.com/"
 
+# Open in Safari Browser on MAC
 open http://www.wgsws-2.diglab.admin.ch.s3-website.eu-central-1.amazonaws.com/

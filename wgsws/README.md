@@ -1,11 +1,12 @@
-# DigiLab WGSWS (Static Web Site)
+# Web Game as Static Web Site (WGSWS)
 
 > 2048 Web Game als komplexe **Statische Web Seite in S3 Bucket** publiziert.
 
 Die Websteite ist dann im Internet über die URL: <http://www.wgsws-1.diglab.admin.ch.s3-website.eu-central-1.amazonaws.com/>
- aufrufbar. Die URl ist wie folgt aufgebaut: http://<S3 BUCKET_NAME>.s3-website.<AWS_REGION>.amazonaws.com
+ aufrufbar. Die URl ist wie folgt aufgebaut: http://S3.<BUCKET_NAME>.s3-website.<AWS_REGION>.amazonaws.com
 
- oder auch über die File URL: <http://s3.eu-central-1.amazonaws.com/www.wgsws.diglab.admin.ch/index.html> Die File URl ist wie folgt aufgebaut: http://s3.<AWS_REGION>.amazonaws.com/<S3 BUCKET_NAME>/<FILE_NAME>
+ Alternativ auch über die File URL: <http://s3.eu-central-1.amazonaws.com/www.wgsws-1.diglab.admin.ch/index.html> 
+ Die File URl ist wie folgt aufgebaut: http://s3.<AWS_REGION>.amazonaws.com/<S3 BUCKET_NAME>/<FILE_NAME>
 
 ## Was wir tun:
 1. Erstellen eines S3 Bucket.
@@ -19,38 +20,65 @@ Die Websteite ist dann im Internet über die URL: <http://www.wgsws-1.diglab.adm
 - Code für Web Applikation 2048 vorhanden
 
 ## Einzelne Schritte 
-0. Öffne Terminal mit Projekt
-`$ cd ~/dev/digilab-aws/wgsws`
-0.1 Kopiere Source Code für die Web-App im ./src Verzeichnis ist:
-`cp ../../docker-2048/2048/* ./out/`
+Öffne ein Terminal und navigiere zum Projekt WGSWS: 
+``` 
+cd ~/dev/digilab-aws/wgsws/
+```
+- Kopiere Source Code für die Web-App ins ./out Verzeichnis ist:
+```
+cp ../../docker-2048/2048/* ./out/`
+```
 
 1. Erstelle einen S3 Bucket 
-`$ aws s3 mb s3://www.wgsws-1.diglab.admin.ch`
+    ```
+    aws s3 mb s3://www.wgsws-1.diglab.admin.ch
+    ```
 
-2. Konfiguriere S3 Bucket als Static Web Hosting, enable index and error file 
-`$ aws s3 website s3://www.wgsws-1.diglab.admin.ch/ --index-document index.html`
+    - Konfiguriere den S3 Bucket für Static Web Hosting. 
+    - Enable Index.html and Error.html File.
+    ```
+    ws s3 website s3://www.wgsws-1.diglab.admin.ch/ --index-document index.html
+    ```
 
-3. Setup Policy as Public Read
-`aws s3api put-bucket-policy --bucket www.wgsws-1.diglab.admin.ch --policy file://policy_wgsws-1_s3_public_read.json`
+2. Setze Policy auf Public Read
+    ```
+    aws s3api put-bucket-policy --bucket www.wgsws-1.diglab.admin.ch --policy file://policy_wgsws-1_s3_public_read.json
+    ```
 
-4. Upload html Files (mit Synchronisation vom Verzeichnis `out`). 
-`aws s3 sync ./out/ s3://www.wgsws-1.diglab.admin.ch/`
+3. Hochladen der Web-App Files der mittels Synchronisation vom Verzeichnis `out` 
+    ```
+    aws s3 sync ./out/ s3://www.wgsws-1.diglab.admin.ch/
+    ```
 
 **Done !** 
 
-Öffne die Web Site im Browser
-`http://www.wgsws-1.diglab.admin.ch.s3-website.eu-central-1.amazonaws.com/`
-
-Weitere Kommandos
-- List Content of Bucket `$ aws s3 ls www.wgsws-1.diglab.admin.ch`
-- Teste html mit curl: `$ curl http://s3.eu-central-1.amazonaws.com/www.wgsws-1.diglab.admin.ch/index.html`
-- Show S3 bucket `$ aws s3 ls | grep '.*diglab.*'`
+- Öffne die Web Site im Browser
+    ```
+    http://www.wgsws-1.diglab.admin.ch.s3-website.eu-central-1.amazonaws.com/
+    ```       
 
 
-# Clean up
-`$ aws s3 rb s3://www.wgsws-1.diglab.admin.ch --force`
+## Clean up Script
+Remove the S3 Bucket and its content
+```
+./script_wgsws-1_remove.sh
+```
 
 
+---  
 
+##  Publiziere eine Web-App in 5 Sekunden
+### Script: script_wgsws-2_create.sh
+```
+#!/bin/bash
+aws s3 mb s3://www.wgsws-2.diglab.admin.ch
+aws s3 website s3://www.wgsws-2.diglab.admin.ch/ --index-document index.html
+aws s3api put-bucket-policy --bucket www.wgsws-2.diglab.admin.ch --policy file://policy_wgsws-2_s3_public_read.json
+aws s3 sync ./2048/ s3://www.wgsws-2.diglab.admin.ch/
+```
 
-
+### Clean-up Script: script_wgsws-2_remove.sh
+```
+#!/bin/bash
+aws s3 rb s3://www.wgsws-2.diglab.admin.ch --force
+```
