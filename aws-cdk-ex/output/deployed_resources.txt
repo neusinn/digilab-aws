@@ -1,0 +1,35 @@
+Resources
+[+] AWS::EC2::VPC                           Digilab-VPC
+[+] AWS::EC2::Subnet                        Digilab-VPC/WebSubnet1/Subnet
+[+] AWS::EC2::RouteTable                    Digilab-VPC/WebSubnet1/RouteTable
+[+] AWS::EC2::SubnetRouteTableAssociation   Digilab-VPC/WebSubnet1/RouteTableAssociation
+[+] AWS::EC2::Route                         Digilab-VPC/WebSubnet1/DefaultRoute
+[+] AWS::EC2::EIP                           Digilab-VPC/WebSubnet1/EIP
+[+] AWS::EC2::NatGateway                    Digilab-VPC/WebSubnet1/NATGateway
+[+] AWS::EC2::Subnet                        Digilab-VPC/WebSubnet2/Subnet
+[+] AWS::EC2::RouteTable                    Digilab-VPC/WebSubnet2/RouteTable
+[+] AWS::EC2::SubnetRouteTableAssociation   Digilab-VPC/WebSubnet2/RouteTableAssociation
+[+] AWS::EC2::Route                         Digilab-VPC/WebSubnet2/DefaultRoute
+[+] AWS::EC2::EIP                           Digilab-VPC/WebSubnet2/EIP
+[+] AWS::EC2::NatGateway                    Digilab-VPC/WebSubnet2/NATGateway
+[+] AWS::EC2::Subnet                        Digilab-VPC/ApplicationSubnet1/Subnet
+[+] AWS::EC2::RouteTable                    Digilab-VPC/ApplicationSubnet1/RouteTable
+[+] AWS::EC2::SubnetRouteTableAssociation   Digilab-VPC/ApplicationSubnet1/RouteTableAssociation
+[+] AWS::EC2::Route                         Digilab-VPC/ApplicationSubnet1/DefaultRoute
+[+] AWS::EC2::Subnet                        Digilab-VPC/ApplicationSubnet2/Subnet
+[+] AWS::EC2::RouteTable                    Digilab-VPC/ApplicationSubnet2/RouteTable
+[+] AWS::EC2::SubnetRouteTableAssociation   Digilab-VPC/ApplicationSubnet2/RouteTableAssociation
+[+] AWS::EC2::Route                         Digilab-VPC/ApplicationSubnet2/DefaultRoute
+[+] AWS::EC2::InternetGateway               Digilab-VPC/IGW
+[+] AWS::EC2::VPCGatewayAttachment          Digilab-VPC/VPCGW
+[+] AWS::EC2::SecurityGroup                 Digilab-ASG/InstanceSecurityGroup
+[+] AWS::EC2::SecurityGroupIngress          Digilab-ASG/InstanceSecurityGroup/from demoDigilabLBSecurityGroup4F6F201F:80
+[+] AWS::IAM::Role Digilab-ASG/InstanceRole DigilabASGInstanceRole108E2895
+[+] AWS::IAM::InstanceProfile               Digilab-ASG/InstanceProfile
+[+] AWS::AutoScaling::LaunchConfiguration   Digilab-ASG/LaunchConfig
+[+] AWS::AutoScaling::AutoScalingGroup      Digilab-ASG/ASG
+[+] AWS::ElasticLoadBalancingV2::LoadBalancer Digilab-LB
+[+] AWS::EC2::SecurityGroup                 Digilab-LB/SecurityGroup
+[+] AWS::EC2::SecurityGroupEgress           Digilab-LB/SecurityGroup/to demoDigilabASGInstanceSecurityGroup649190BF:80
+[+] AWS::ElasticLoadBalancingV2::Listener   Digilab-LB/Listener
+[+] AWS::ElasticLoadBalancingV2::TargetGroup Digilab-LB/Listener/TargetGroup

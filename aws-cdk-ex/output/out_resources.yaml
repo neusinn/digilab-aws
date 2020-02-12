@@ -1,0 +1,532 @@
+Resources:
+  DigilabVPCDE3ED49A:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/Resource
+  DigilabVPCWebSubnet1SubnetB1519E8C:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.1.0.0/24
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ""
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet1
+        - Key: aws-cdk:subnet-name
+          Value: Web
+        - Key: aws-cdk:subnet-type
+          Value: Public
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet1/Subnet
+  DigilabVPCWebSubnet1RouteTable0194AA4C:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet1
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet1/RouteTable
+  DigilabVPCWebSubnet1RouteTableAssociation93115F16:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCWebSubnet1RouteTable0194AA4C
+      SubnetId:
+        Ref: DigilabVPCWebSubnet1SubnetB1519E8C
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet1/RouteTableAssociation
+  DigilabVPCWebSubnet1DefaultRoute7E371A15:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCWebSubnet1RouteTable0194AA4C
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: DigilabVPCIGW74D6A031
+    DependsOn:
+      - DigilabVPCVPCGWCF030E55
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet1/DefaultRoute
+  DigilabVPCWebSubnet1EIPBC7AB79E:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet1
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet1/EIP
+  DigilabVPCWebSubnet1NATGateway218EC25E:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+          - DigilabVPCWebSubnet1EIPBC7AB79E
+          - AllocationId
+      SubnetId:
+        Ref: DigilabVPCWebSubnet1SubnetB1519E8C
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet1
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet1/NATGateway
+  DigilabVPCWebSubnet2Subnet75E0C7B5:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.1.1.0/24
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      AvailabilityZone:
+        Fn::Select:
+          - 1
+          - Fn::GetAZs: ""
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet2
+        - Key: aws-cdk:subnet-name
+          Value: Web
+        - Key: aws-cdk:subnet-type
+          Value: Public
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet2/Subnet
+  DigilabVPCWebSubnet2RouteTable28370F4B:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet2
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet2/RouteTable
+  DigilabVPCWebSubnet2RouteTableAssociation6AD68434:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCWebSubnet2RouteTable28370F4B
+      SubnetId:
+        Ref: DigilabVPCWebSubnet2Subnet75E0C7B5
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet2/RouteTableAssociation
+  DigilabVPCWebSubnet2DefaultRouteDDC60A06:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCWebSubnet2RouteTable28370F4B
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: DigilabVPCIGW74D6A031
+    DependsOn:
+      - DigilabVPCVPCGWCF030E55
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet2/DefaultRoute
+  DigilabVPCWebSubnet2EIPCF7CED2A:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet2
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet2/EIP
+  DigilabVPCWebSubnet2NATGatewayF358F0F2:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId:
+        Fn::GetAtt:
+          - DigilabVPCWebSubnet2EIPCF7CED2A
+          - AllocationId
+      SubnetId:
+        Ref: DigilabVPCWebSubnet2Subnet75E0C7B5
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/WebSubnet2
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/WebSubnet2/NATGateway
+  DigilabVPCApplicationSubnet1SubnetDC959BA0:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.1.2.0/24
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ""
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/ApplicationSubnet1
+        - Key: aws-cdk:subnet-name
+          Value: Application
+        - Key: aws-cdk:subnet-type
+          Value: Private
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet1/Subnet
+  DigilabVPCApplicationSubnet1RouteTableE1E900E4:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/ApplicationSubnet1
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet1/RouteTable
+  DigilabVPCApplicationSubnet1RouteTableAssociation5E3663A2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCApplicationSubnet1RouteTableE1E900E4
+      SubnetId:
+        Ref: DigilabVPCApplicationSubnet1SubnetDC959BA0
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet1/RouteTableAssociation
+  DigilabVPCApplicationSubnet1DefaultRoute6171A375:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCApplicationSubnet1RouteTableE1E900E4
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId:
+        Ref: DigilabVPCWebSubnet1NATGateway218EC25E
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet1/DefaultRoute
+  DigilabVPCApplicationSubnet2SubnetA87D8020:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.1.3.0/24
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      AvailabilityZone:
+        Fn::Select:
+          - 1
+          - Fn::GetAZs: ""
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/ApplicationSubnet2
+        - Key: aws-cdk:subnet-name
+          Value: Application
+        - Key: aws-cdk:subnet-type
+          Value: Private
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet2/Subnet
+  DigilabVPCApplicationSubnet2RouteTable64333259:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC/ApplicationSubnet2
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet2/RouteTable
+  DigilabVPCApplicationSubnet2RouteTableAssociationC6C9B26B:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCApplicationSubnet2RouteTable64333259
+      SubnetId:
+        Ref: DigilabVPCApplicationSubnet2SubnetA87D8020
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet2/RouteTableAssociation
+  DigilabVPCApplicationSubnet2DefaultRouteF7F253BC:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: DigilabVPCApplicationSubnet2RouteTable64333259
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId:
+        Ref: DigilabVPCWebSubnet2NATGatewayF358F0F2
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/ApplicationSubnet2/DefaultRoute
+  DigilabVPCIGW74D6A031:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-VPC
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/IGW
+  DigilabVPCVPCGWCF030E55:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+      InternetGatewayId:
+        Ref: DigilabVPCIGW74D6A031
+    Metadata:
+      aws:cdk:path: demo/Digilab-VPC/VPCGW
+  DigilabASGInstanceSecurityGroupDF08FFC8:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: demo/Digilab-ASG/InstanceSecurityGroup
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-ASG
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+    Metadata:
+      aws:cdk:path: demo/Digilab-ASG/InstanceSecurityGroup/Resource
+  DigilabASGInstanceSecurityGroupfromdemoDigilabLBSecurityGroup4F6F201F80AC3634BA:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      IpProtocol: tcp
+      Description: Load balancer to target
+      FromPort: 80
+      GroupId:
+        Fn::GetAtt:
+          - DigilabASGInstanceSecurityGroupDF08FFC8
+          - GroupId
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - DigilabLBSecurityGroupEC9B8913
+          - GroupId
+      ToPort: 80
+    Metadata:
+      aws:cdk:path: demo/Digilab-ASG/InstanceSecurityGroup/from demoDigilabLBSecurityGroup4F6F201F:80
+  DigilabASGInstanceRole108E2895:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                Fn::Join:
+                  - ""
+                  - - ec2.
+                    - Ref: AWS::URLSuffix
+        Version: "2012-10-17"
+      Tags:
+        - Key: Name
+          Value: demo/Digilab-ASG
+    Metadata:
+      aws:cdk:path: demo/Digilab-ASG/InstanceRole/Resource
+  DigilabASGInstanceProfile7D49EC36:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - Ref: DigilabASGInstanceRole108E2895
+    Metadata:
+      aws:cdk:path: demo/Digilab-ASG/InstanceProfile
+  DigilabASGLaunchConfig9A4A8113:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      ImageId:
+        Ref: SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter
+      InstanceType: t2.micro
+      IamInstanceProfile:
+        Ref: DigilabASGInstanceProfile7D49EC36
+      SecurityGroups:
+        - Fn::GetAtt:
+            - DigilabASGInstanceSecurityGroupDF08FFC8
+            - GroupId
+      UserData:
+        Fn::Base64: "#!/bin/bash
+
+
+          \            yum update -y
+
+          \            yum install httpd -y
+
+          \            echo 'Hello from the Digilab Web App' > /var/www/html/index.html
+
+          \            service httpd start
+
+          \            chkconfig httpd on
+
+          \            "
+    DependsOn:
+      - DigilabASGInstanceRole108E2895
+    Metadata:
+      aws:cdk:path: demo/Digilab-ASG/LaunchConfig
+  DigilabASG5BB759EA:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      MaxSize: "1"
+      MinSize: "1"
+      LaunchConfigurationName:
+        Ref: DigilabASGLaunchConfig9A4A8113
+      Tags:
+        - Key: Name
+          PropagateAtLaunch: true
+          Value: demo/Digilab-ASG
+      TargetGroupARNs:
+        - Ref: DigilabLBListenerTargetGroupD083254F
+      VPCZoneIdentifier:
+        - Ref: DigilabVPCApplicationSubnet1SubnetDC959BA0
+        - Ref: DigilabVPCApplicationSubnet2SubnetA87D8020
+    UpdatePolicy:
+      AutoScalingScheduledAction:
+        IgnoreUnmodifiedGroupSizeProperties: true
+    Metadata:
+      aws:cdk:path: demo/Digilab-ASG/ASG
+  DigilabLBDBDD9097:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Scheme: internet-facing
+      SecurityGroups:
+        - Fn::GetAtt:
+            - DigilabLBSecurityGroupEC9B8913
+            - GroupId
+      Subnets:
+        - Ref: DigilabVPCWebSubnet1SubnetB1519E8C
+        - Ref: DigilabVPCWebSubnet2Subnet75E0C7B5
+      Type: application
+    DependsOn:
+      - DigilabVPCWebSubnet1DefaultRoute7E371A15
+      - DigilabVPCWebSubnet2DefaultRouteDDC60A06
+    Metadata:
+      aws:cdk:path: demo/Digilab-LB/Resource
+  DigilabLBSecurityGroupEC9B8913:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Automatically created Security Group for ELB demoDigilabLB2824F32B
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow from anyone on port 80
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+    Metadata:
+      aws:cdk:path: demo/Digilab-LB/SecurityGroup/Resource
+  DigilabLBSecurityGrouptodemoDigilabASGInstanceSecurityGroup649190BF80D2CD7F64:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      GroupId:
+        Fn::GetAtt:
+          - DigilabLBSecurityGroupEC9B8913
+          - GroupId
+      IpProtocol: tcp
+      Description: Load balancer to target
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - DigilabASGInstanceSecurityGroupDF08FFC8
+          - GroupId
+      FromPort: 80
+      ToPort: 80
+    Metadata:
+      aws:cdk:path: demo/Digilab-LB/SecurityGroup/to demoDigilabASGInstanceSecurityGroup649190BF:80
+  DigilabLBListenerD3C5BF31:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - TargetGroupArn:
+            Ref: DigilabLBListenerTargetGroupD083254F
+          Type: forward
+      LoadBalancerArn:
+        Ref: DigilabLBDBDD9097
+      Port: 80
+      Protocol: HTTP
+    Metadata:
+      aws:cdk:path: demo/Digilab-LB/Listener/Resource
+  DigilabLBListenerTargetGroupD083254F:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Port: 80
+      Protocol: HTTP
+      TargetType: instance
+      VpcId:
+        Ref: DigilabVPCDE3ED49A
+    Metadata:
+      aws:cdk:path: demo/Digilab-LB/Listener/TargetGroup/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Modules: aws-cdk=1.22.0,@aws-cdk/assets=1.22.0,@aws-cdk/aws-autoscaling=1.22.0,@aws-cdk/aws-autoscaling-common=1.22.0,@aws-cdk/aws-certificatemanager=1.22.0,@aws-cdk/aws-cloudformation=1.22.0,@aws-cdk/aws-cloudwatch=1.22.0,@aws-cdk/aws-ec2=1.22.0,@aws-cdk/aws-elasticloadbalancing=1.22.0,@aws-cdk/aws-elasticloadbalancingv2=1.22.0,@aws-cdk/aws-events=1.22.0,@aws-cdk/aws-iam=1.22.0,@aws-cdk/aws-kms=1.22.0,@aws-cdk/aws-lambda=1.22.0,@aws-cdk/aws-logs=1.22.0,@aws-cdk/aws-route53=1.22.0,@aws-cdk/aws-s3=1.22.0,@aws-cdk/aws-s3-assets=1.22.0,@aws-cdk/aws-sns=1.22.0,@aws-cdk/aws-sqs=1.22.0,@aws-cdk/aws-ssm=1.22.0,@aws-cdk/core=1.22.0,@aws-cdk/cx-api=1.22.0,@aws-cdk/region-info=1.22.0,jsii-runtime=Python/3.6.8
+    Condition: CDKMetadataAvailable
+Parameters:
+  SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-amazon-linux-latest/amzn-ami-hvm-x86_64-gp2
+Conditions:
+  CDKMetadataAvailable:
+    Fn::Or:
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-northeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ap-southeast-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - ca-central-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - cn-northwest-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-central-1
+      - Fn::Or:
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-north-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - eu-west-3
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - me-south-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - sa-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-east-2
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-1
+          - Fn::Equals:
+              - Ref: AWS::Region
+              - us-west-2
+
