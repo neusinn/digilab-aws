@@ -26,7 +26,8 @@ class DemoStack(core.Stack):
         asg = autoscaling.AutoScalingGroup(self, "Digilab-ASG",
             vpc=vpc,
             instance_type=ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
-            machine_image=ec2.AmazonLinuxImage()
+            machine_image=ec2.AmazonLinuxImage(),
+            min_capacity=2, max_capacity=5
         )
 
 
