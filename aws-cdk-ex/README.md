@@ -17,7 +17,7 @@ It generates CloudFormation code.
 - 1 Elastic Load balancer
 
 
-## Project structure
+## Project structure of aws-cdk-ex
 ```
 ├── README.md
 ├── demo_stack.py                // example IaC
@@ -100,9 +100,10 @@ It generates CloudFormation code.
  
  - AWS Cloud [Development Kit](https://aws.amazon.com/cdk/) and [Documentation](https://docs.aws.amazon.com/cdk/latest/guide/home.html)
  - AWS Cloud Formation [Documentation](https://docs.aws.amazon.com/cloudformation/index.html)
+ - AWS CDK [API Developer Guide and API Reference](https://docs.aws.amazon.com/cdk/api/latest)  and [Python API Reference](https://docs.aws.amazon.com/cdk/api/latest/python/modules.html)
  - AWS CDK Code on [Github](https://github.com/aws/aws-cdk)
  - AWS CDK [workshop](https://cdkworkshop.com)
- - AWS CDK [API Developer Guide and API Reference](https://docs.aws.amazon.com/cdk/api/latest) 
+
  
  The example was made during the recommended course "AWS Infrastructure as Code for Software Developers" from ACloudGuru. See [A Clout Guru](https://acloud.guru) for their trainings. 
  Also available trough LinkedIn Course: [AWS Infrastructure as Code for Software Developers](https://www.linkedin.com/learning/aws-infrastructure-as-code-for-software-developers)

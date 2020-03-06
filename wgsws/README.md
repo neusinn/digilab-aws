@@ -18,16 +18,11 @@ Die Websteite ist dann im Internet über die URL: <http://www.wgsws-1.diglab.adm
 - AWS Account erstellt
 - AWS-CLI Command Line Interface installiert und konfiguriert (Keys, Region)
 - Code für Web Applikation 2048 vorhanden
+`cp ../../docker-2048/2048/* ./out/`
 
 ## Einzelne Schritte 
 Öffne ein Terminal und navigiere zum Projekt WGSWS: 
-``` 
-cd ~/dev/digilab-aws/wgsws/
-```
-- Kopiere Source Code für die Web-App ins ./out Verzeichnis ist:
-```
-cp ../../docker-2048/2048/* ./out/`
-```
+`cd ~/dev/digilab-aws/wgsws/`
 
 1. Erstelle einen S3 Bucket 
     ```
@@ -37,7 +32,7 @@ cp ../../docker-2048/2048/* ./out/`
     - Konfiguriere den S3 Bucket für Static Web Hosting. 
     - Enable Index.html and Error.html File.
     ```
-    ws s3 website s3://www.wgsws-1.diglab.admin.ch/ --index-document index.html
+    aws s3 website s3://www.wgsws-1.diglab.admin.ch/ --index-document index.html
     ```
 
 2. Setze Policy auf Public Read

@@ -15,10 +15,7 @@
 
 ## Einzelne Schritte 
 
-Öffne ein Terminal und navigiere zum Projekt SSSWS: 
-    ```
-    cd ~/dev/digilab-aws/sssws/
-    ```
+Öffne ein Terminal und navigiere zum Projekt SSSWS: `cd ~/dev/digilab-aws/sssws/`
 
 1. Erstelle einen S3 Bucket 
     ```

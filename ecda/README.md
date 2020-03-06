@@ -43,19 +43,28 @@
     sudo docker run hello-world
     ```
    
-5. Source Code laden
+5. Load docker image from dockerhub and run it
+    ```
+    sudo docker run --name digilab-2048 -d -p 80:80 neusinn/docker-2048
+    ```
+   
+   ### Done
+   Öffne Internet Browser `http://<Public IP of EC>`
+ 
+   ### Alternative:  
+6. Source Code auf EC Instanz laden 
     ```
     git clone https://github.com/neusinn/docker-2048
     ```
    
-6. Docker image mit Web-Server und Web-Applikation bauen
+7. Docker image mit Web-Server und Web-Applikation bauen
     ```
     cd docker-2048/
     cat docker-2048/Dockerfile
     sudo docker build -t "docker-2048" .
-    ```
+    ```   
    
-7. Run docker image
+8. Run docker image
     ```
     sudo docker run --name digilab-2048 -d -p 80:80 docker-2048
    ```
