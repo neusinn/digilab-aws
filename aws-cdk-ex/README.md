@@ -1,6 +1,8 @@
 # Infrastructure as Code (IaC) with AWS Cloud Development Kit (AWS-CDK)
 
-The AWS Cloud Development Kit (AWS CDK) is an opinionated, open-source software development framework to define cloud infrastructure in code and provision it through AWS CloudFormation.
+The AWS [Cloud Development Kit](https://docs.aws.amazon.com/cdk/latest/guide/home.html) (AWS CDK) is an opinionated, 
+open-source software development framework to define cloud infrastructure in code [CDK API](https://docs.aws.amazon.com/cdk/latest/guide/reference.html) 
+and provision it through [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html).
 
 It offers a high-level object-oriented abstraction to define AWS resources imperatively using the power of modern programming languages.
 It allows to build and deploy applications without worrying about the underlying infrastructure details.
