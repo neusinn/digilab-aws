@@ -15,7 +15,7 @@
 
 ## Einzelne Schritte 
 
-Öffne ein Terminal und navigiere zum Projekt SSSWS: `cd ~/dev/digilab-aws/sssws/`
+Öffne ein Terminal und navigiere zum Projekt SSSWS: `cd ~/dev/bit/digilab-aws/sssws/`
 
 1. Erstelle einen S3 Bucket 
     ```
@@ -24,7 +24,7 @@
 
 2.  Konfiguriere den S3 Bucket für Static Web Hosting und definiere Index.html and Error.html File.
     ```
-    aws s3 website s3://www.sssws-1.diglab.admin.ch/ --index-document index.html --error-document error.html`
+    aws s3 website s3://www.sssws-1.diglab.admin.ch/ --index-document index.html --error-document error.html
     ```
 
 3.  Hochladen der HTML Files der Statischen Webseite mittels Synchronisation. Und konfiguriere Public Read Access für jedes File (oder definiere die policy)

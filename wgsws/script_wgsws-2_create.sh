@@ -10,7 +10,7 @@ echo "======================================================"
 read -n 1 -s -r -p "Press any key to start"
 SECONDS=0
 
-
+echo
 echo "1. Create S3 Bucket  'www.wgsws-2.diglab.admin.ch' "
 aws s3 mb s3://www.wgsws-2.diglab.admin.ch
 
@@ -21,7 +21,7 @@ echo "3. Set Policy for S3 Bucket for public access"
 aws s3api put-bucket-policy --bucket www.wgsws-2.diglab.admin.ch --policy file://policy_wgsws-2_s3_public_read.json
 
 echo "4. Upload Web Game code."
-aws s3 sync ./2048/ s3://www.wgsws-2.diglab.admin.ch/
+aws s3 sync ./out/ s3://www.wgsws-2.diglab.admin.ch/
 
 
 duration=$SECONDS

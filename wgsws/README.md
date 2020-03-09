@@ -22,7 +22,7 @@ Die Websteite ist dann im Internet über die URL: <http://www.wgsws-1.diglab.adm
 
 ## Einzelne Schritte 
 Öffne ein Terminal und navigiere zum Projekt WGSWS: 
-`cd ~/dev/digilab-aws/wgsws/`
+`cd ~/dev/bit/digilab-aws/wgsws/`
 
 1. Erstelle einen S3 Bucket 
     ```

@@ -82,9 +82,6 @@ It generates CloudFormation code.
  In the AWS console open EC2- Dashboard and navigate to loadbalancer demo-Digilab-LB and copy the DNS name. 
  Open a browser and paste the DNS name to go to the website.
  
- Or use the Elastic IP that are allocated to the Public subnet. 
- 
- 
 ## Hints:
  1. After adding modules in setup.py and run pip install -r requirements.txt
  2. **Cleanup unused cdresources with `$ cdk destroy`** ! Otherwise you get charged 
