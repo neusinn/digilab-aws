@@ -9,6 +9,11 @@
 2. Konfiguriere Konfiguriere den S3 Bucket für Static Web Hosting
 3. Hinaufladen der HTML Files
 
+
+## Blueprint
+[Blueprint für eine Statische Web Seite in einem S3 Bucket](./Blueprint_Ex_S3.png) 
+
+
 ## Vorbedingungen
 - AWS Account erstellt
 - AWS-CLI Command Line Interface installiert und konfiguriert (Keys, Region)

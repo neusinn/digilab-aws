@@ -15,8 +15,12 @@ It generates CloudFormation code.
 - with 2 subnets:
     - 1 Private subnet with a Webserver
     - 1 Public subnet with a NAT Gatway and Elasitc IP
-- 1 Internet Gate Way
+- 1 Internet Gateway
 - 1 Elastic Load balancer
+
+
+## Blueprint
+[Blueprint für eine Statische Web Seite in einem S3 Bucket](./Blueprint_Ex_IaC.png)
 
 
 ## Project structure of aws-cdk-ex

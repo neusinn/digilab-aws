@@ -14,6 +14,10 @@ Die Websteite ist dann im Internet über die URL: <http://www.wgsws-1.diglab.adm
 3. konfiguriere Policy für Zugriff auf S3 Bucket
 3. Hinaufladen des Web Games    
 
+## Blueprint
+[Blueprint für eine Statische Web Seite in einem S3 Bucket](./Blueprint_Ex_S3.png)
+
+
 ## Vorbedingungen
 - AWS Account erstellt
 - AWS-CLI Command Line Interface installiert und konfiguriert (Keys, Region)
