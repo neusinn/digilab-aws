@@ -20,7 +20,7 @@ It generates CloudFormation code.
 
 
 ## Blueprint
-[Blueprint für eine Statische Web Seite in einem S3 Bucket](./Blueprint_Ex_IaC.png)
+![Blueprint für eine Statische Web Seite in einem S3 Bucket](./Blueprint_Ex_IaC.png)
 
 
 ## Project structure of aws-cdk-ex

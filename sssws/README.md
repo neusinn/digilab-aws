@@ -11,7 +11,7 @@
 
 
 ## Blueprint
-[Blueprint für eine Statische Web Seite in einem S3 Bucket](./Blueprint_Ex_S3.png) 
+![Blueprint für eine Statische Web Seite in einem S3 Bucket](./Blueprint_Ex_S3.png) 
 
 
 ## Vorbedingungen
