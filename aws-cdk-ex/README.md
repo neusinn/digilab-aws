@@ -107,6 +107,9 @@ It generates CloudFormation code.
  - AWS CDK Code on [Github](https://github.com/aws/aws-cdk)
  - AWS CDK [workshop](https://cdkworkshop.com)
 
+### Articles
+- CloudFormation, Terraform, or CDK? A guide to IaC on AWS [Artile](https://acloudguru.com/blog/engineering/cloudformation-terraform-or-cdk-guide-to-iac-on-aws)
+
  
  The example was made during the recommended course "AWS Infrastructure as Code for Software Developers" from ACloudGuru. See [A Clout Guru](https://acloud.guru) for their trainings. 
  Also available trough LinkedIn Course: [AWS Infrastructure as Code for Software Developers](https://www.linkedin.com/learning/aws-infrastructure-as-code-for-software-developers)
