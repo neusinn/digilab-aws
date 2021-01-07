@@ -98,6 +98,7 @@ It generates CloudFormation code.
  * `cdk deploy`      deploy this stack to your default AWS account/region
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation 
+ * `cdk destroy`     destroy this stack
  
  ## Resources
  
