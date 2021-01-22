@@ -44,12 +44,12 @@ It generates CloudFormation code.
 3. Initialize the working folder and setup for language (here Python 3) 
     - `mkdir demo`
     - `cd demo`
-    - `cdk init --languate python` --> setup a virtual environment
-4. activate virtual environment `source .env/bin/activate`
+    - `cdk init --language python` --> setup a virtual environment
+4. activate virtual environment `source .venv/bin/activate`
 5. Download and install requirements `pip install -r requirements.txt` After each time you added a new AWC-CDK module rerun this command.
-6. Make changes to the environment
+6. Make changes to the cloud 9 environment preference
     - Python version: Python 3
-    - Add folder with dist python packages to python path. Check the correct path first.  e.g. `/home/ec2-user/environment/demo/.env/lib/python3.7/dist-packages`     
+    - Add folder with dist python packages to python path. Check the correct PYTHONPATH first.  e.g. `/home/ec2-user/environment/demo/.venv/lib/python3.7/site-packages;/usr/local/lib/python3.4/dist-packages:/usr/local/lib/python3.5/dist-packages`     
     - (only first time) `cdk botsstrap` this creates staging resources required by the CDK
 5. `cdk synth` Check initialisation.
  
@@ -109,7 +109,7 @@ It generates CloudFormation code.
  - AWS CDK [workshop](https://cdkworkshop.com)
 
 ### Articles
-- CloudFormation, Terraform, or CDK? A guide to IaC on AWS [Artile](https://acloudguru.com/blog/engineering/cloudformation-terraform-or-cdk-guide-to-iac-on-aws)
+- CloudFormation, Terraform, or CDK? A guide to IaC on AWS [Article](https://acloudguru.com/blog/engineering/cloudformation-terraform-or-cdk-guide-to-iac-on-aws)
 
  
  The example was made during the recommended course "AWS Infrastructure as Code for Software Developers" from ACloudGuru. See [A Clout Guru](https://acloud.guru) for their trainings. 
