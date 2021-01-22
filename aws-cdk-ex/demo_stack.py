@@ -6,14 +6,16 @@ from aws_cdk import aws_elasticloadbalancingv2 as elbv2
 # Hint 1: Add modules in setup.py and run pip install -r requiremnts.txt
 # Hint 2: Cleanup resources with $ cdk destroy ! Otherwise you get charged
 
+
 class DemoStack(core.Stack):
 
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
-        super().__init__(scope, id, **kwargs)
-
-
-        # Create a VPN named 'Digilab-Demo2VPC' with 2 availability zones and 2 subnets, a public and a private one
-        vpc= ec2.Vpc(self, 'Digilab-Demo2VPC',
+    def __init__(self, scope: core.Construct, construct_id: str, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
+       
+       
+        # The code that defines your stack goes here
+        # Create a VPN named 'Digilab-VPC' with 2 availability zones and 2 subnets, a public and a private one
+        vpc= ec2.Vpc(self, 'Digilab-Demo-VPC',
             cidr='10.1.0.0/16',
             max_azs=2,
             subnet_configuration=[
@@ -27,7 +29,8 @@ class DemoStack(core.Stack):
             vpc=vpc,
             instance_type=ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
             machine_image=ec2.AmazonLinuxImage(),
-            min_capacity=2, max_capacity=5
+            min_capacity=2,
+            max_capacity=5
         )
 
 

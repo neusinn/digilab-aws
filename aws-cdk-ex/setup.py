@@ -1,5 +1,6 @@
 import setuptools
 
+
 with open("README.md") as fp:
     long_description = fp.read()
 
@@ -7,7 +8,6 @@ with open("README.md") as fp:
 setuptools.setup(
     name="demo",
     version="0.0.1",
-
 
     description="An empty CDK Python app",
     long_description=long_description,
@@ -30,7 +30,7 @@ setuptools.setup(
 
 
     python_requires=">=3.6",
-
+    
 
     classifiers=[
         "Development Status :: 4 - Beta",
